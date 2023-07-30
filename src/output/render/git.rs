@@ -61,7 +61,7 @@ impl f::GitStatus {
 pub trait Colours {
     fn not_modified(&self) -> Style;
     #[allow(clippy::new_ret_no_self)]
-    fn new(&self) -> Style;
+    fn new(self: &Self) -> Style;
     fn modified(&self) -> Style;
     fn deleted(&self) -> Style;
     fn renamed(&self) -> Style;
