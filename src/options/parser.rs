@@ -164,7 +164,7 @@ impl Args {
             // the pair “-- --arg”, without it getting matched as a flag that
             // doesn’t exist.
             if ! parsing {
-                frees.push(arg)
+                frees.push(arg);
             }
             else if arg == "--" {
                 parsing = false;
@@ -194,14 +194,14 @@ impl Args {
                     let flag = Flag::Long(arg.long);
                     match arg.takes_value {
                         TakesValue::Forbidden => {
-                            result_flags.push((flag, None))
+                            result_flags.push((flag, None));
                         }
                         TakesValue::Necessary(values) => {
                             if let Some(next_arg) = inputs.next() {
                                 result_flags.push((flag, Some(next_arg)));
                             }
                             else {
-                                return Err(ParseError::NeedsValue { flag, values })
+                                return Err(ParseError::NeedsValue { flag, values });
                             }
                         }
                         TakesValue::Optional(_) => {
@@ -283,7 +283,7 @@ impl Args {
                         let flag = Flag::Short(*byte);
                         match arg.takes_value {
                             TakesValue::Forbidden => {
-                                result_flags.push((flag, None))
+                                result_flags.push((flag, None));
                             }
                             TakesValue::Necessary(values) |
                             TakesValue::Optional(values) => {
@@ -316,7 +316,7 @@ impl Args {
 
             // Otherwise, it’s a free string, usually a file name.
             else {
-                frees.push(arg)
+                frees.push(arg);
             }
         }
 
