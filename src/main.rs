@@ -89,25 +89,25 @@ fn main() {
                 }
 
                 Err(e) => {
-                    eprintln!("{}", e);
+                    eprintln!("{e}");
                     exit(exits::RUNTIME_ERROR);
                 }
             }
         }
 
         OptionsResult::Help(help_text) => {
-            print!("{}", help_text);
+            print!("{help_text}");
         }
 
         OptionsResult::Version(version_str) => {
-            print!("{}", version_str);
+            print!("{version_str}");
         }
 
         OptionsResult::InvalidOptions(error) => {
-            eprintln!("exa: {}", error);
+            eprintln!("exa: {error}");
 
             if let Some(s) = error.suggestion() {
-                eprintln!("{}", s);
+                eprintln!("{s}");
             }
 
             exit(exits::OPTIONS_ERROR);
@@ -180,14 +180,14 @@ impl<'args> Exa<'args> {
             match File::from_args(PathBuf::from(file_path), None, None) {
                 Err(e) => {
                     exit_status = 2;
-                    writeln!(io::stderr(), "{:?}: {}", file_path, e)?;
+                    writeln!(io::stderr(), "{file_path:?}: {e}")?;
                 }
 
                 Ok(f) => {
                     if f.points_to_directory() && ! self.options.dir_action.treat_dirs_as_files() {
                         match f.to_dir() {
                             Ok(d)   => dirs.push(d),
-                            Err(e)  => writeln!(io::stderr(), "{:?}: {}", file_path, e)?,
+                            Err(e)  => writeln!(io::stderr(), "{file_path:?}: {e}")?,
                         }
                     }
                     else {
