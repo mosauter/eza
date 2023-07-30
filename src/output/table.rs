@@ -177,8 +177,7 @@ impl Column {
             Self::Inode      |
             Self::Blocks     |
             Self::GitStatus  => Alignment::Right,
-            Self::Timestamp(_) | 
-            _                => Alignment::Left,
+            _ => Alignment::Left,
         }
     }
 
