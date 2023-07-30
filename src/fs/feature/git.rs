@@ -68,7 +68,7 @@ impl FromIterator<PathBuf> for GitCache {
                         git.repos.push(r);
                     }
                     Err(miss) => {
-                        git.misses.push(miss)
+                        git.misses.push(miss);
                     }
                 }
             }
@@ -385,7 +385,7 @@ impl f::SubdirGitRepo{
                     return Self{status : f::SubdirGitRepoStatus::GitClean, branch};
                 }
                 Err(e) => {
-                    error!("Error looking up Git statuses: {:?}", e)
+                    error!("Error looking up Git statuses: {:?}", e);
                 }
             }
         }
